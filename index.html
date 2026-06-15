@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório de Desempenho — Jean Mahmoud | 08/06 a 13/06</title>
+<style>
+  :root{
+    --ink:#0e1116;
+    --muted:#5b6470;
+    --line:#e7e9ee;
+    --bg:#f5f6f8;
+    --card:#ffffff;
+    --accent:#1763ff;
+    --accent-soft:#eaf1ff;
+    --green:#13a868;
+    --green-soft:#e6f6ee;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 64px}
+
+  /* Header */
+  header{
+    background:linear-gradient(135deg,#0e1116 0%,#1a2433 60%,#1763ff 140%);
+    color:#fff;
+    border-radius:0 0 22px 22px;
+    padding:38px 40px 34px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px;font-size:15px;text-transform:uppercase;opacity:.9}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(23,99,255,.25)}
+  header h1{font-size:30px;font-weight:800;margin-top:18px;line-height:1.2;letter-spacing:-.5px}
+  header .sub{margin-top:8px;font-size:16px;opacity:.85}
+  .period{display:inline-block;margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:999px;font-size:14px;font-weight:600}
+
+  /* Sections */
+  section{margin-top:40px}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+  h2{font-size:21px;font-weight:800;margin-top:6px;letter-spacing:-.3px}
+  .lead{margin-top:14px;font-size:16px;color:#2a2f37}
+
+  /* KPI grid */
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .kpi .label{font-size:13px;color:var(--muted);font-weight:600}
+  .kpi .num{font-size:30px;font-weight:800;letter-spacing:-1px;margin-top:6px}
+  .kpi .delta{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:13px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .up{background:var(--green-soft);color:var(--green)}
+  .neutral{background:var(--accent-soft);color:var(--accent)}
+
+  /* Bars */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:22px}
+  .bar-row{margin-top:18px}
+  .bar-row:first-child{margin-top:4px}
+  .bar-top{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:7px}
+  .bar-top .pct{font-weight:800}
+  .track{height:12px;background:#eef0f4;border-radius:999px;overflow:hidden}
+  .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#1763ff,#4d8bff)}
+  .fill.alt{background:linear-gradient(90deg,#13a868,#3ec98c)}
+  .fill.grey{background:linear-gradient(90deg,#8a93a3,#aeb6c2)}
+
+  /* Highlight reel card */
+  .reel{background:linear-gradient(135deg,#101727,#1b2a47);color:#fff;border-radius:18px;padding:28px;margin-top:22px}
+  .reel .tag{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8fb6ff}
+  .reel h3{font-size:20px;font-weight:800;margin-top:10px;line-height:1.35}
+  .reel-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .reel-stats .s{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px}
+  .reel-stats .s .n{font-size:22px;font-weight:800}
+  .reel-stats .s .l{font-size:12px;opacity:.75;margin-top:3px}
+  .reel-foot{margin-top:18px;font-size:14px;opacity:.85;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+
+  /* Activity */
+  .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  .mini .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .mini .m .n{font-size:24px;font-weight:800}
+  .mini .m .l{font-size:13px;color:var(--muted);margin-top:3px}
+  .mini .m .d{font-size:12px;font-weight:700;color:var(--green);margin-top:8px}
+
+  /* Conclusion */
+  .concl{background:var(--accent-soft);border:1px solid #d4e2ff;border-radius:16px;padding:26px;margin-top:22px}
+  .concl p{font-size:16px;color:#1c2a45}
+
+  footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+  footer .bn{font-weight:800;color:var(--ink)}
+
+  @media(max-width:680px){
+    header{padding:30px 22px}
+    header h1{font-size:24px}
+    .kpis,.reel-stats,.mini{grid-template-columns:1fr 1fr}
+    .reel-stats{grid-template-columns:1fr 1fr}
+  }
+  @media print{
+    body{background:#fff}
+    .panel,.kpi,.mini .m{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap" style="padding:0">
+    <div class="brand"><span class="dot"></span> New Feed Marketing</div>
+    <h1>Relatório de Desempenho — Instagram</h1>
+    <div class="sub">Cliente: <strong>Jean Mahmoud</strong> · Resumo semanal</div>
+    <span class="period">08/06 a 13/06 de 2026</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="eyebrow">Visão geral</div>
+    <h2>Boa entrega e forte salto no alcance</h2>
+    <p class="lead">O perfil manteve uma boa entrega e continuou alcançando um público majoritariamente novo. O grande destaque da semana foi o crescimento expressivo no número de contas alcançadas, com o impulsionamento mantendo participação importante na performance.</p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="label">Visualizações</div>
+        <div class="num">10.329</div>
+        <div class="delta neutral">59,3% vindas de anúncios</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Contas alcançadas</div>
+        <div class="num">6.802</div>
+        <div class="delta up">▲ 160,7% vs. período anterior</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Visualizações de não seguidores</div>
+        <div class="num">76,5%</div>
+        <div class="delta up">Atraindo novos públicos</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Origem das visualizações</div>
+    <h2>De onde veio a entrega</h2>
+    <div class="panel">
+      <div class="bar-row">
+        <div class="bar-top"><span>Anúncios (impulsionamento)</span><span class="pct">59,3%</span></div>
+        <div class="track"><div class="fill" style="width:59.3%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span>Orgânico</span><span class="pct">40,7%</span></div>
+        <div class="track"><div class="fill alt" style="width:40.7%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span>Não seguidores (sobre o total)</span><span class="pct">76,5%</span></div>
+        <div class="track"><div class="fill grey" style="width:76.5%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span>Seguidores (sobre o total)</span><span class="pct">23,5%</span></div>
+        <div class="track"><div class="fill grey" style="width:23.5%"></div></div>
+      </div>
+    </div>
+    <p class="lead">Os conteúdos seguiram cumprindo bem o papel de descoberta e atração de novas pessoas para o perfil, com 76,5% das visualizações vindas de quem ainda não segue a página.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Formatos de conteúdo</div>
+    <h2>Stories seguem como principal canal de entrega</h2>
+    <div class="panel">
+      <div class="bar-row">
+        <div class="bar-top"><span>Stories</span><span class="pct">67,7%</span></div>
+        <div class="track"><div class="fill" style="width:67.7%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span>Reels</span><span class="pct">30,9%</span></div>
+        <div class="track"><div class="fill alt" style="width:30.9%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span>Posts</span><span class="pct">1,4%</span></div>
+        <div class="track"><div class="fill grey" style="width:1.4%"></div></div>
+      </div>
+    </div>
+    <p class="lead">Os reels ganharam presença relevante nos resultados (30,9%). O maior destaque foi o reel de <strong>9 de junho</strong>, com 4,6 mil visualizações, seguido por conteúdos com <strong>746</strong>, <strong>623</strong> e <strong>584</strong> visualizações.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Destaque da semana</div>
+    <h2>Reel de maior desempenho</h2>
+    <div class="reel">
+      <div class="tag">Reel em destaque</div>
+      <h3>"Passagem Award: a verdadeira economia das milhas…"</h3>
+      <div class="reel-stats">
+        <div class="s"><div class="n">4.633</div><div class="l">Visualizações</div></div>
+        <div class="s"><div class="n">40m38s</div><div class="l">Tempo de visualização</div></div>
+        <div class="s"><div class="n">68</div><div class="l">Interações</div></div>
+        <div class="s"><div class="n">29</div><div class="l">Compartilhamentos</div></div>
+      </div>
+      <div class="reel-foot">Detalhe das interações: 19 curtidas · 15 comentários · 29 compartilhamentos · 1 repost · 3 salvamentos. O volume de compartilhamentos e comentários é um ponto forte — indica que o tema despertou interesse, conversa e valor percebido pelo público.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Atividade no perfil</div>
+    <h2>Interesse além da visualização</h2>
+    <div class="mini">
+      <div class="m"><div class="n">262</div><div class="l">Ações no perfil</div><div class="d">▲ 6,1%</div></div>
+      <div class="m"><div class="n">256</div><div class="l">Visitas ao perfil</div><div class="d">▲ 5,3%</div></div>
+      <div class="m"><div class="n">6</div><div class="l">Toques em links externos</div><div class="d">▲ 50%</div></div>
+    </div>
+    <p class="lead">Mesmo com volume menor de visualizações que na semana anterior, o perfil manteve bons sinais de interesse: comentários, compartilhamentos, visitas e cliques em links seguiram em crescimento.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Conclusão</div>
+    <h2>O que a semana mostrou</h2>
+    <div class="concl">
+      <p>A semana teve desempenho positivo, principalmente em <strong>alcance e descoberta de novos públicos</strong>. Mesmo com um volume menor de visualizações em comparação à semana anterior, o perfil apresentou crescimento forte em contas alcançadas (+160,7%) e manteve bons sinais de interesse — comentários, compartilhamentos, visitas ao perfil e cliques em links. Os conteúdos sobre milhas e passagens seguem mostrando potencial para gerar atenção e interação qualificada.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="bn">New Feed Marketing</div>
+    Relatório de desempenho · Jean Mahmoud · 08/06 a 13/06 de 2026
+  </footer>
+
+</div>
+</body>
+</html>
